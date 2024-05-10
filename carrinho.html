@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<title>Carrinho de Compras - Bicicletaria</title>
+<style>
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+    header a {
+      color: #fff;
+      text-decoration: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    header a:hover {
+      background-color: #555;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    .cart-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .cart-item {
+      flex: 0 0 calc(33.33% - 20px);
+      border: none;
+      padding: 20px;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+    .cart-item:hover {
+      transform: translateY(-5px);
+    }
+    .cart-item img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+    .cart-item-details {
+      margin-top: 15px;
+    }
+    .remove-from-cart-btn {
+      background-color: #FF0000;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .remove-from-cart-btn:hover {
+      background-color: #CC0000;
+    }
+</style>
+</head>
+<body>
+  <header>
+    <h1>Carrinho de Compras</h1>
+    <nav>
+      <a href="produtos.html">Produtos</a>
+      <a href="carrinho.html" class="cart-link">Carrinho</a>
+      <a href="cadastro.html">Cadastro de Produtos</a>
+      <a href="dashboard.html">dashboard</a>
+      <a href="index.html">Login</a>
+
+    </nav>
+  </header>
+
+  <div class="container">
+    <h2>Itens no Carrinho</h2>
+    <div class="cart-list">
+        <div >
+
+            <div class="cart-list">
+        
+              <div class="cart-item">
+                <img src="bike2.jpeg" alt="Bicicleta 1">
+                <div class="cart-item-details">
+                  <h3>Bicicleta Mountain Bike</h3>
+                  <p>R$ 1500,00</p>
+                  <p>Quantidade: 1</p>
+                </div>
+                <button class="remove-from-cart-btn">Remover do Carrinho</button>
+              </div>
+        
+              <div class="cart-item">
+                <img src="bike.png" alt="Bicicleta 2">
+                <div class="cart-item-details">
+                  <h3>Bicicleta Urbana</h3>
+                  <p>R$ 800,00</p>
+                  <p>Quantidade: 1</p>
+                </div>
+                <button class="remove-from-cart-btn">Remover do Carrinho</button>
+              </div>
+          
+              
+            </div>
+          </div>
+    </div>
+  </div>
+</body>
+</html>
