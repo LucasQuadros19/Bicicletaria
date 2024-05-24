@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ordem de Serviços - Bicicletaria</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+    header a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    header a:hover {
+      background-color: #555;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .form-container, .cart-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .form-container label, .cart-container label {
+      font-weight: bold;
+    }
+
+    .form-container input, .form-container textarea, .form-container select,
+    .cart-container input, .cart-container textarea, .cart-container select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .form-container button, .cart-container button {
+      padding: 10px 20px;
+      background-color: #333;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .form-container button:hover, .cart-container button:hover {
+      background-color: #555;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+    }
+    th {
+      background-color: #333;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    .notification {
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      text-align: center;
+      border-radius: 5px;
+      display: none;
+      margin-bottom: 20px;
+    }
+
+    .btn-primary {
+      padding: 10px 20px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-size: 16px;
+    }
+
+    .btn-primary:hover {
+      background-color: #555;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Ordem de Serviços - Bicicletaria</h1>
+    <nav>
+      <a href="produtos.html">Produtos</a>
+      <a href="carrinho.html" class="cart-link">Carrinho</a>
+      <a href="cadastro.html">Cadastro de Produtos</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="ordem.html">Serviço</a>
+      <a href="index.html">Login</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="form-container">
+      <label for="cliente">Cliente:</label>
+      <input type="text" id="cliente" name="cliente" placeholder="Nome do Cliente">
+
+      <label for="servico">Serviço:</label>
+      <textarea id="servico" name="servico" rows="4" placeholder="Descrição do Serviço"></textarea>
+
+      <label for="status">Status:</label>
+      <select id="status" name="status">
+        <option value="pendente">Pendente</option>
+        <option value="em_progresso">Em Progresso</option>
+        <option value="concluido">Concluído</option>
+      </select>
+
+      <button type="submit" id="addServiceButton">Cadastrar Serviço</button>
+    </div>
+
+    <div class="notification" id="notification">Serviço adicionado com sucesso!</div>
+
+    <h2>Serviços Registrados</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Cliente</th>
+          <th>Serviço</th>
+          <th>Status</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody id="servicesTable">
+        <tr>
+          <td>1</td>
+          <td>João Silva</td>
+          <td>Troca de corrente</td>
+          <td>Pendente</td>
+          <td><button type="button" class="btn-primary" onclick="addToCart(1, 'João Silva', 'Troca de corrente')">Cobrar</button></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Maria Oliveira</td>
+          <td>Reparo de freios</td>
+          <td>Em Progresso</td>
+          <td><button type="button" class="btn-primary" onclick="addToCart(2, 'Maria Oliveira', 'Reparo de freios')">Cobrar</button></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Carlos Santos</td>
+          <td>Substituição de pneus</td>
+          <td>Concluído</td>
+          <td><button type="button" class="btn-primary" onclick="addToCart(3, 'Carlos Santos', 'Substituição de pneus')">Cobrar</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    document.getElementById('addServiceButton').addEventListener('click', () => {
+      const cliente = document.getElementById('cliente').value;
+      const servico = document.getElementById('servico').value;
+      const status = document.getElementById('status').value;
+      const table = document.getElementById('servicesTable');
+
+      if(cliente && servico) {
+        const rowCount = table.rows.length + 1;
+        const row = table.insertRow();
+        row.innerHTML = `
+          <td>${rowCount}</td>
+          <td>${cliente}</td>
+          <td>${servico}</td>
+          <td>${status}</td>
+          <td><button type="button" class="btn-primary" onclick="addToCart(${rowCount}, '${cliente}', '${servico}')">Cobrar</button></td>
+        `;
+        
+        document.getElementById('cliente').value = '';
+        document.getElementById('servico').value = '';
+        document.getElementById('status').value = 'pendente';
+
+        showNotification('Serviço adicionado com sucesso!');
+      } else {
+        showNotification('Por favor, preencha todos os campos!', 'error');
+      }
+    });
+
+    function addToCart(id, cliente, servico) {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.push({ id, cliente, servico });
+      localStorage.setItem('cart', JSON.stringify(cart));
+      window.location.href = 'carrinho.html';
+    }
+
+    function showNotification(message, type = 'success') {
+      const notification = document.getElementById('notification');
+      notification.innerText = message;
+      notification.style.backgroundColor = type === 'success' ? '#4CAF50' : '#f44336';
+      notification.style.display = 'block';
+      setTimeout(() => {
+        notification.style.display = 'none';
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
